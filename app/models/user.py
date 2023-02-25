@@ -1,4 +1,4 @@
-from app import db
+from app.database import db
 
 
 class User(db.Model):
@@ -12,3 +12,13 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.name
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'company': self.company,
+            'email': self.email,
+            'phone': self.phone,
+            'skills': [skill.serialize() for skill in self.skills]
+        }
