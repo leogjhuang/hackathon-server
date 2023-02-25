@@ -16,4 +16,4 @@ COPY . .
 EXPOSE 5000
 
 # Run Flask app when the container launches
-CMD python app/__init__.py
+CMD flask run --host=0.0.0.0
