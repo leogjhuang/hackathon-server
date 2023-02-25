@@ -7,5 +7,6 @@ services:
     volumes:
       - .:/app
     environment:
-      FLASK_APP: app/__init__.py
+      DATABASE_URL: sqlite:///app.db
+      FLASK_APP: app
       FLASK_DEBUG: 1
