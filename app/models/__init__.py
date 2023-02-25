@@ -1,3 +1,2 @@
-from app import db
-from .user import User
-from .skill import Skill
+from .skill import *
+from .user import *
