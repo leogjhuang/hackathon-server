@@ -28,8 +28,14 @@ def load_data(app):
             kwargs = {key: user_data[key] for key in user_data if key != 'skills'}
             user = User(**kwargs)
             db.session.add(user)
-            for skill_data in user_data['skills']:
-                skill = Skill(**skill_data, user=user)
-                db.session.add(skill)
 
+            # Add the skills
+            for skill_data in user_data['skills']:
+                skill = Skill.query.filter_by(skill=skill_data['skill']).first()
+                if skill is None:
+                    skill = Skill(**skill_data)
+                    db.session.add(skill)
+                user.skills.append(skill)
+
+        # Commit the changes
         db.session.commit()
